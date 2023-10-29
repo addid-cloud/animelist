@@ -39,7 +39,7 @@ const Page = async({params: {id}})=>{
         </div>
 
 <div>
-        <VideoPlayer YoutubeId={anime.data.trailer.youtube_id}/>
+        <VideoPlayer YouTubeId={anime.data.trailer.youtube_id}/>
 </div>
 
         </>
