@@ -3,9 +3,9 @@ import InputSearch from "./InputSearch";
 
 const Navbar = () =>{
     return(
-        <header className="bg-color-accent">
+        <header className="bg-color-accent text-white">
             <div className="flex md:flex-row flex-col gap-2 justify-between p-4 md:items-center">
-                <Link href="/" className="font-bold text-2xl"> AnimeList </Link>
+                <Link href="/" className="font-bold text-2xl"> Karena Lo Wibu </Link>
                 <InputSearch/>
             </div>
         </header>

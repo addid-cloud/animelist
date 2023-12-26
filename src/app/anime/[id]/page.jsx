@@ -2,6 +2,7 @@ import { getAnimeResponse } from "@/libs/api-libs"
 import VideoPlayer from "@/components/utilities/VideoPlayer"
 import { Sparkle } from "@phosphor-icons/react/dist/ssr"
 import Image from "next/image"
+
 const Page = async({params: {id}})=>{
     const anime = await getAnimeResponse(`anime/${id}`)
     console.log(anime)
@@ -30,8 +31,8 @@ const Page = async({params: {id}})=>{
             
             <p className="flex flex-row items-center"><Sparkle size={12} className="m-0 p-0 text-color-accent"/>{anime.data.score}</p>
         </div>
-        <div className="pt-4 px-4 flex sm:flex-nowrap flex-wrap gap-2 text-color-primary">
-            <Image src={anime.data.images.webp.image_url} alt={anime.data.images.jpg.image_url} width={250} height={250} className="w-full object-cover"/>
+        <div className="pt-4 px-4 flex sm:flex-nowrap flex-wrap gap-2  text-color-primary">
+            <Image src={anime.data.images.webp.image_url} alt={anime.data.images.jpg.image_url} width={250} height={250} className="w-full object-cover max-h-96"/>
             <div>
             <h3 className="border-b-2 text-2xl m-2">synopsis</h3>
             <p className="text-color-primary text-xl  indent-4 ">{anime.data.synopsis}</p>

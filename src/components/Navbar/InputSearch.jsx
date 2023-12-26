@@ -9,12 +9,12 @@ const InputSearch = ()=>{
     const handleSearch = (event)=>{
         const masukan = event.key === "Enter" || event.type === "click";
         const keyword = searchRef.current.value;
+        if(!keyword|| keyword.trim()=="") return
         if(masukan){
-            if(keyword !=""){
                 event.preventDefault();
                 router.push(`/search/${keyword}`)
             }
-        }
+        
     }
 
     return(

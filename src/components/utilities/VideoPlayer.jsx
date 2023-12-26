@@ -10,7 +10,7 @@ const VideoPlayer = ({YouTubeId})=>{
     }
 
     const option= {
-        width:"300",
+        width:"450",
         heihht:"250"
     }
     const Player =()=>{
