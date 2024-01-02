@@ -7,23 +7,29 @@ import Quote from '../Quote';
     const News = () => {
         const [newsData, setNewsData] = useState([]);
     
-    useEffect(() => {
-        const fetchNews = async () => {
-            try {
-            let upcomingAnime = await getAnimeResponse("seasons/upcoming", "");
-            const randomAnimeIds = reproduce(upcomingAnime.data, 10).data.map(anime => anime.mal_id);
-            const newsDataArray = [];
-            for (const randomAnimeId of randomAnimeIds) {
-                const news = await getAnimeResponse(`anime/${randomAnimeId}/news`, 'page=1');
-                newsDataArray.push(...news.data);
-            }
-            setNewsData(newsDataArray);
-            } catch (error) {
-            console.error('Error fetching news:', error);
-            }
-        };
-        fetchNews();
+        useEffect(() => {
+            const fetchNews = async () => {
+                try {
+                    let upcomingAnime = await getAnimeResponse("seasons/upcoming", "");
+                    const randomAnimeIds = reproduce(upcomingAnime.data, 3).data.map(anime => anime.mal_id);
+                    const newsDataArray = [];
+                    for (const randomAnimeId of randomAnimeIds) {
+                        const news = await getAnimeResponse(`anime/${randomAnimeId}/news`, 'page=1');
+                        newsDataArray.push(...news.data);
+                    }
+                    setNewsData(newsDataArray);
+                } catch (error) {
+                    console.error('Error fetching news:', error);
+                }
+            };
+            // Introduce a setTimeout with a delay of 1000 milliseconds (1 second)
+            const timeoutId = setTimeout(() => {
+                fetchNews();
+            }, 1000);
+            // Cleanup function to clear the timeout in case the component unmounts before the timeout completes
+            return () => clearTimeout(timeoutId);
         }, []);
+        
     
         // Menampilkan hanya 10 berita pertama
         const limitedNewsData = newsData.slice(0, 10);

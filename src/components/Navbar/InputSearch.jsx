@@ -1,5 +1,5 @@
 "use client"
-import { Detective } from "@phosphor-icons/react"
+import { Detective } from "@phosphor-icons/react/dist/ssr"
 import { useRouter } from "next/navigation"
 import { useRef } from "react"
 

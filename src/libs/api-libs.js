@@ -42,7 +42,6 @@ export const generateRandomId = (length = 5) => {
     return randomId;
 };
 
-// File: libs/utils.js
 
 export const formatAnimeDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };

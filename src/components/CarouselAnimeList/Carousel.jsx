@@ -34,7 +34,7 @@ return (
                 className="cursor-pointer text-color-primary hover:text-color-texthover transition-all flex-col flex  items-center self-center"
                 key={index}>
             <Image src={anime.images.webp.image_url} alt="..." width={350} height={350}
-                className=" max-h-96 object-cover text-center w-[90%] m-auto" />
+                    key={index}className=" max-h-96 object-cover text-center w-[90%] m-auto" />
             <p className="font-bold sm:text-base text-base p-4 text-center line-clamp-1">{anime.title}</p>
             </Link>
         </div>
