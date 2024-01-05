@@ -2,27 +2,34 @@ import { getAnimeResponse } from "@/libs/api-libs"
 import VideoPlayer from "@/components/utilities/VideoPlayer"
 import { Sparkle } from "@phosphor-icons/react/dist/ssr"
 import Image from "next/image"
+import CollectionButton from "@/components/AnimeList/CollectionButton"
+import { authUserSession } from "@/libs/auth-libs"
+import prisma from "@/libs/prisma"
 
 const Page = async({params: {id}})=>{
     const anime = await getAnimeResponse(`anime/${id}`)
-    console.log(anime)
-    const trelercok = anime.data.trailer.youtube_id
+    const user = await authUserSession()
+    const collection = await prisma.collection.findFirst({
+        where:{user_email:user?.email, anime_id :id}
+    })
+    console.log(collection);
     return(
         <>
         <div className="pt-4 px-4">
             <h3 className="text-color-primary text-2xl">{anime.data.title} - {anime.data.year} ({anime.data.season})</h3>
+            {!collection && user && <CollectionButton anime_id={id} user_email={user?.email}/>}
         </div>
         <div className="pt-4 px-4 flex gap-2 text-color-primary text-sm">
-            <div className="w-36 flex sm:flex-row flex-col items-center justify-center border rounded border-color-accent gap-x-3">
-            <h3>peringkat </h3>
+            <div className="w-40 flex sm:flex-row flex-col items-center justify-center border rounded border-color-accent gap-x-3">
+            <h3>peringkat :</h3>
             <p> {anime.data.rank}</p>
             </div>
-            <div className="w-36 flex sm:flex-row flex-col items-center justify-center border rounded border-color-accent gap-x-3">
-            <h3>episodes </h3>
+            <div className="w-40 flex sm:flex-row flex-col items-center justify-center border rounded border-color-accent gap-x-3">
+            <h3>episodes :</h3>
             <p> {anime.data.episodes}</p>
             </div>
-            <div className="w-36 flex sm:flex-row flex-col items-center justify-center border rounded border-color-accent gap-x-3 text-center">
-            <h3>status </h3>
+            <div className="w-40 flex sm:flex-row flex-col items-center justify-center border rounded border-color-accent gap-x-3 text-center">
+            <h3>status :</h3>
             <p> {anime.data.status}</p>
             </div>
         </div>
